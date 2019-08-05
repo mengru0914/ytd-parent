@@ -1,0 +1,27 @@
+server:
+  port: 9008
+spring:
+  application:
+    name: ytd_user #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/p2p?characterEncoding=UTF8
+    username: root
+    password: 1234
+  jpa:
+    database: MySQL
+    show-sql: true
+  mvc:
+    static-path-pattern: static/**
+  thymeleaf:
+    cache: false
+#pagehelper分页插件
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+#mybatis:
+#    # 通用mapper已经提供了驼峰转换的设置，所以可以不用再设置
+#      configuration:
+#        map-underscore-to-camel-case: true

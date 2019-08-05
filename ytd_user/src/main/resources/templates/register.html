@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/css/js/jquery-1.8.2.min.js"></script>
+    <script src="../static/css/js/md5.js"></script>
+    <link rel="stylesheet" href="../static/css/css/index_like.css">
+
+
+</head>
+
+<script type="text/javascript">
+
+$(function () {
+    $("#checkcode").click(function () {
+        var mobile = $("[name='mobile']").val();
+        alert(123)
+        $.post(
+            "/checkcode",
+            {mobile: mobile},
+            function (obj) {
+                if (obj == 'ok') {
+                    alert("发送成功");
+
+                } else {
+                    alert("发送失败")
+                }
+            },
+            "json"
+        )
+    })
+
+    
+})
+
+function checkmobile(){
+    var mobile = $("[name='mobile']").val();
+    var regmobile = /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/;
+    if (mobile == "") {
+        alert("请输入手机号");
+    } else {
+        if (!regmobile.test(mobile)) {
+            alert('手机号码输入不正确！');
+
+        }
+    }
+}
+function checkpasswd(){
+    var passwd = $("[name='passwd']").val();
+    var passwd = $.md5($("[name='passwd']").val());///前台加密
+    if (passwd == "") {
+        alert("请输入密码");
+    }
+}
+
+</script>
+<body>
+<form action="/register" method="post">
+    <table>
+        <tr>
+            <td><input type="text" name="mobile" placeholder="手机号" onblur="checkmobile()"></td>
+        </tr>
+        <tr>
+            <td><input type="password" name="passwd" onblur="checkpasswd()" placeholder="6-32位密码" ><a href="/forgetPwd">忘记密码</a></td>
+        </tr>
+        <tr>
+            <td><input type="text"    placeholder="验证码"><input type="button" value="验证码" id="checkcode"></td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="注册">
+                已账号？</span><a href="/tologin">快速登录</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
