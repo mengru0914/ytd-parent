@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OpenController {
 
     @RequestMapping("/toopen")
-    public void toopen(){
-
+    public String toopen(){
+        return "openaccount";
     }
 }
