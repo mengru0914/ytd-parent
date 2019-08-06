@@ -16,7 +16,9 @@
         <module>ytd_rabbitmqtest</module>
         <module>ytd_sms</module>
         <module>ytd_user</module>
+        <module>ytd_openaccount</module>
     </modules>
+
 
 
     <parent>
@@ -60,6 +62,7 @@
             </snapshots>
         </repository>
     </repositories>
+
 
     <pluginRepositories>
         <pluginRepository>

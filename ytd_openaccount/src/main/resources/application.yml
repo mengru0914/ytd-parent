@@ -1,8 +1,8 @@
 server:
-  port: 9001
+  port: 9002
 spring:
   application:
-    name: ytd_user #指定服务名
+    name: ytd_openaccount #指定服务名
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/p2p?characterEncoding=UTF8
