@@ -5,7 +5,7 @@ spring:
     name: ytd_openaccount #指定服务名
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/p2p?characterEncoding=UTF8
+    url: jdbc:mysql://10.1.67.7:3306/p2p?characterEncoding=UTF8
     username: root
     password: 1234
   jpa:
@@ -15,6 +15,16 @@ spring:
     static-path-pattern: static/**
   thymeleaf:
     cache: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+
+
+
 #pagehelper分页插件
 #pagehelper:
 #  helperDialect: mysql

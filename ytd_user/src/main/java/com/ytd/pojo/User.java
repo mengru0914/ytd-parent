@@ -12,7 +12,6 @@ public class User implements Serializable {
     private String mobile;
     private String passwd;
 
-
     @Id
     @Column(name="userid")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
