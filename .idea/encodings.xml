@@ -2,15 +2,14 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_base" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_common" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_egg" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_eureka" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_openaccount" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_rabbitmqtest" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_search" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_sms" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ytd_user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-openaccount" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-rabbitmqtest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-sms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ytd-user" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -6,18 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ytd_base" />
-        <module name="ytd_common" />
-        <module name="ytd_eureka" />
-        <module name="ytd_openaccount" />
-        <module name="ytd_rabbitmqtest" />
-        <module name="ytd_search" />
-        <module name="ytd_sms" />
-        <module name="ytd_user" />
+        <module name="ytd-base" />
+        <module name="ytd-common" />
+        <module name="ytd-eureka" />
+        <module name="ytd-openaccount" />
+        <module name="ytd-rabbitmqtest" />
+        <module name="ytd-search" />
+        <module name="ytd-sms" />
+        <module name="ytd-user" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ytd_egg" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
