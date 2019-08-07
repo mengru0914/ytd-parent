@@ -45,22 +45,24 @@ function changeCode(){
 <script color="0,0,0" opacity="0.5" count="99"
         src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"
         type="text/javascript" charset="utf-8"></script>
-<form action="login" method="post">
+<form action="/goLogin/login" method="get">
     <table>
         <tr>
-            <td><input type="text" name="mobile" placeholder="手机号" id="checkmobile"></td>
+            <td>手机号</td>
+            <td><input type="text" name="mobile" placeholder="请输入手机号" id="checkmobile"></td>
         </tr>
         <tr>
-            <td><input style="" type="password" name="passwd" onblur="checkpasswd()" placeholder="6-32位密码" id="passwd"><a href="#">忘记密码</a></td>
+            <td>密码</td>
+            <td><input type="password" name="passwd" onblur="checkpasswd()" placeholder="请输入6-32位密码" id="passwd"><a href="#">忘记密码</a></td>
         </tr>
         <tr>
-            <td>
-                <input type="text" name="randomCode"/>
-                <img id="vimg"  title="点击更换" onclick="changeCode();" src="/AuthImageServlet">
+            <td>验证码</td>
+            <td><input type="text" name="randomCode" placeholder="请输入图片中的验证码"/>
+                <img id="vimg"  title="点击更换" onclick="changeCode();" src="/goLogin/AuthImageServlet">
             </td>
         </tr>
         <tr>
-            <td colspan="10">
+            <td colspan="2">
                 <input type="submit" value="登录">
                 <span style="margin-left: 100px">没有账号？</span><a href="/goUser/toregister">快速注册</a>
             </td>

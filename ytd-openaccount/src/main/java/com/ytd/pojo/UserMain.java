@@ -9,79 +9,79 @@ import java.util.Date;
 @Table(name="user_main")
 public class UserMain implements Serializable {
 
-    private Integer userid;
+    public Integer userid;
 
-    private String email;
+    public String email;
 
-    private String nickname;
+    public String nickname;
 
-    private String realname;
+    public String realname;
 
-    private String idcardno;
+    public String idcardno;
 
-    private String passwd;
+    public String passwd;
 
-    private String paypassword;
+    public String paypassword;
 
-    private Integer ispwdset;
+    public Integer ispwdset;
 
-    private String mobile;
+    public String mobile;
 
-    private String jxmobile;
+    public String jxmobile;
 
-    private String city;
+    public String city;
 
-    private Date registertime;
+    public Date registertime;
 
-    private Short roles;
+    public Short roles;
 
-    private BigDecimal cash;
+    public BigDecimal cash;
 
-    private BigDecimal currbal;
+    public BigDecimal currbal;
 
-    private BigDecimal frozenwithdrawcash;
+    public BigDecimal frozenwithdrawcash;
 
-    private BigDecimal frozenbiddingcash;
+    public BigDecimal frozenbiddingcash;
 
-    private Short idverifylimit;
+    public Short idverifylimit;
 
-    private Integer portrait;
+    public Integer portrait;
 
-    private Short status;
+    public Short status;
 
-    private Short forbidstatus;
+    public Short forbidstatus;
 
-    private Short albumcapacity;
+    public Short albumcapacity;
 
-    private Short securitylevel;
+    public Short securitylevel;
 
-    private String weibouid;
+    public String weibouid;
 
-    private String weiboaccesstoken;
+    public String weiboaccesstoken;
 
-    private String qquid;
+    public String qquid;
 
-    private String qqaccesstoken;
+    public String qqaccesstoken;
 
-    private Short origin;
+    public Short origin;
 
-    private Integer staffid;
+    public Integer staffid;
 
-    private String usercode;
+    public String usercode;
 
-    private String referee;
+    public String referee;
 
-    private Date levelUpdateTime;
+    public Date levelUpdateTime;
 
-    private String level;
+    public String level;
 
-    private Date bindtime;
+    public Date bindtime;
 
-    private String loginkey;
+    public String loginkey;
 
-    private String userkey;
+    public String userkey;
 
-    private String cashchl;
+    public String cashchl;
 
     @Id
     @Column(name="userid")

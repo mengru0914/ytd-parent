@@ -15,7 +15,7 @@
 <body>
 <script color="0,0,0" opacity="0.5" count="99" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"
         type="text/javascript" charset="utf-8"></script>
-<form action="login" method="get">
+<form action="" method="get">
     <table>
         <tr>
             <td colspan="10"><a href="#">首页</a></td>
@@ -23,8 +23,12 @@
             <td colspan="10"><a href="#">安全保障</a></td>
             <td colspan="10"><a href="#">信息披露</a></td>
             <td colspan="10"><a href="#">网贷课堂</a></td>
-            <td colspan="10"><a href="/goUserMain/toMyAccount">我的账户</a></td>
-            <td colspan="10"><a href="http://127.0.0.1:9002/goUserMain/toMyAccount/?userid=2">我的账户</a></td>
+            <td colspan="10"><a href="http://127.0.0.1:9002/goUserMain/toMyAccount?userid=${userid}">我的账户</a></td>
+        </tr>
+        <tr>
+            <td colspan="10">
+                用户ID:<p th:text="${userid}"></p>
+            </td>
         </tr>
     </table>
 </form>

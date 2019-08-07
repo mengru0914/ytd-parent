@@ -5,24 +5,18 @@
     <title>我的账户</title>
     <script src="../static/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $("#checkcode").click(function () {
-                var mobile = $("[name='mobile']").val();
-                $.post(
-                    "/goUser/checkcode",
-                    {mobile: mobile},
-                    function (obj) {
-                        if (obj == 'ok') {
-                            alert("发送成功");
-
-                        } else {
-                            alert("发送失败")
-                        }
-                    },
-                    "json"
-                )
-            })
-        })
+        // $(function () {
+        //     $("#checkcode").click(function () {
+        //         var  = $("[name=]").val();
+        //         $.post(
+        //             "",
+        //             {},
+        //             function (obj) {
+        //             },
+        //             "json"
+        //         )
+        //     })
+        // })
 
     </script>
 </head>
@@ -32,6 +26,15 @@
             type="text/javascript" charset="utf-8"></script>
     <h1 style="font-size: 88px">我是我的账户页面</h1>
     <!--我要做的第一件事情是判断用户有没有开通虚拟电子账户，没有提示其去开通-->
+    <!---->
+    <p th:text="'hello'+${useronemain.realname}"> assssssssss</p>
+
+    <p th:text="${useronemain.realname}"></p>
+<!--   <th:c:forEach items="${useronemain }" var="" varStatus="status" begin="0" step="1">
+        <tr class="gradeX">
+            我的userid<td class="">${useronemain.userid}</td>
+        </tr>
+    </th:c:forEach>-->
         <table style="border: 2px;border-color: red">
             <tr>
                 <td>我的userid</td>

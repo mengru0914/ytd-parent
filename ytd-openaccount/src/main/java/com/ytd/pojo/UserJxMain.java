@@ -6,23 +6,23 @@ import java.io.Serializable;
 @Entity
 @Table(name="user_jx_main")
 public class UserJxMain implements Serializable {
-    private Integer id;
+    public Integer id;
 
-    private Integer userid;
+    public Integer userid;
 
-    private String username;
+    public String username;
 
-    private String useridno;
+    public String useridno;
 
-    private String usermobile;
+    public String usermobile;
 
-    private String usercardno;
+    public String usercardno;
 
-    private String useraccountid;
+    public String useraccountid;
 
-    private String acqres;
+    public String acqres;
 
-    private String acqres1;
+    public String acqres1;
     @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)

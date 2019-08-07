@@ -42,17 +42,20 @@ function changeCode(){
 }
 </script>
 <body>
-<form action="login" method="get">
+<form action="/goLogin/login" method="get">
     <table>
         <tr>
-            <td><input type="text" name="mobile" placeholder="手机号" id="checkmobile"></td>
+            <td>手机号</td>
+            <td><input type="text" name="mobile" placeholder="请输入手机号" id="checkmobile"></td>
         </tr>
         <tr>
-            <td><input style="" type="password" name="passwd" onblur="checkpasswd()" placeholder="6-32位密码" id="passwd"><a href="#">忘记密码</a></td>
+            <td>密码</td>
+            <td><input style="" type="password" name="passwd" onblur="checkpasswd()" placeholder="请输入6-32位密码" id="passwd"><a href="#">忘记密码</a></td>
         </tr>
         <tr>
-            <td><input type="text" name="randomCode"/>
-                <img id="vimg"  title="点击更换" onclick="changeCode();" src="/AuthImageServlet">
+            <td>验证码</td>
+            <td><input type="text" name="randomCode" placeholder="请输入图片中的验证码"/>
+                <img id="vimg"  title="点击更换" onclick="changeCode();" src="/goLogin/AuthImageServlet">
             </td>
         </tr>
         <tr>

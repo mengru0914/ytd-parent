@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -22,13 +23,9 @@ public class UserMainController {
     private UserClient userClient;
 
     @RequestMapping("/toMyAccount")
-    public String login (Integer userid,Model model, HttpSession session){
-        //UserMain userMainList = (UserMain) session.getAttribute("userMain");
-
-        userClient.findByid(userid);
-
+    public String login (Integer userid, HttpServletRequest request, HttpSession session){
         UserMain useronemain = usermainservice.findByUserid(userid);
-        model.addAttribute("useronemain",useronemain);
+        request.setAttribute("useronemain",useronemain);
         return "myAccount";
     }
 }
