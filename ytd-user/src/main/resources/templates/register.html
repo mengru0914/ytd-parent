@@ -45,13 +45,6 @@ function checkmobile(){
         }
     }
 }
-function checkpasswd(){
-    var passwd = $("[name='passwd']").val();
-    var passwd = $.md5($("[name='passwd']").val());///前台加密
-    if (passwd == "") {
-        alert("请输入密码");
-    }
-}
 
 </script>
 <body>
@@ -66,7 +59,7 @@ function checkpasswd(){
         </tr>
         <tr>
             <td>密码</td>
-            <td><input type="password" name="passwd" onblur="checkpasswd()" placeholder="请输入6-32位密码" ></td>
+            <td><input type="password" name="passwd"  placeholder="请输入6-32位密码" ></td>
         </tr>
         <tr>
             <td>验证码</td>

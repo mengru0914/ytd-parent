@@ -9,37 +9,37 @@
 </head>
 
 <script type="text/javascript">
-$(function () {
+    $(function () {
 
 
 
-})
-function checkmobile(){
-    var mobile = $("[name='mobile']").val();
-    var regmobile = /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/;
-    if (mobile == "") {
-        alert("请输入手机号");
-    } else {
-        if (!regmobile.test(mobile)) {
-            alert('手机号码输入不正确！');
+    })
+    function checkmobile(){
+        var mobile = $("[name='mobile']").val();
+        var regmobile = /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/;
+        if (mobile == "") {
+            alert("请输入手机号");
+        } else {
+            if (!regmobile.test(mobile)) {
+                alert('手机号码输入不正确！');
 
+            }
         }
     }
-}
-function checkpasswd(){
-    var passwd = $("[name='passwd']").val();
-    var passwd = $.md5($("[name='passwd']").val());///前台加密
-    if (passwd == "") {
-        alert("请输入密码");
-    }
-}
+    function checkpasswd(){
+        var passwd = $("[name='passwd']").val();
 
-function changeCode(){
-    var imgNode = document.getElementById("vimg");
-    //重新加载验证码，达到刷新的目的
-    imgNode.src = "AuthImageServlet?t=" + Math.random();
-    // 防止浏览器缓存的问题
-}
+        if (passwd == "") {
+            alert("请输入密码");
+        }
+    }
+
+    function changeCode(){
+        var imgNode = document.getElementById("vimg");
+        //重新加载验证码，达到刷新的目的
+        imgNode.src = "AuthImageServlet?t=" + Math.random();
+        // 防止浏览器缓存的问题
+    }
 </script>
 <body>
 <script color="0,0,0" opacity="0.5" count="99"
