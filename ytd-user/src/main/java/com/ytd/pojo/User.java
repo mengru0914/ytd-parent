@@ -1,5 +1,9 @@
 package com.ytd.pojo;
 
+/**
+ * 这里是实体类模块User
+ * 开发人员：刘梦汝
+ */
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -55,6 +59,7 @@ public class User implements Serializable {
 
     @Id
     @Column(name="userid")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getUserId() {
         return userId;
     }
@@ -349,5 +354,48 @@ public class User implements Serializable {
 
     public void setCashChl(String cashChl) {
         this.cashChl = cashChl;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", idCardNo='" + idCardNo + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", payPassword='" + payPassword + '\'' +
+                ", isPwdSet=" + isPwdSet +
+                ", mobile='" + mobile + '\'' +
+                ", jxmobile='" + jxmobile + '\'' +
+                ", city='" + city + '\'' +
+                ", registerTime=" + registerTime +
+                ", roles=" + roles +
+                ", cash=" + cash +
+                ", currBal=" + currBal +
+                ", frozenWithDrawCash=" + frozenWithDrawCash +
+                ", frozenBiddingCash=" + frozenBiddingCash +
+                ", idVerifyLimit=" + idVerifyLimit +
+                ", portrait=" + portrait +
+                ", status=" + status +
+                ", forbidStatus=" + forbidStatus +
+                ", albumCapacity=" + albumCapacity +
+                ", securityLevel=" + securityLevel +
+                ", weiboUId='" + weiboUId + '\'' +
+                ", weiboAccessToken='" + weiboAccessToken + '\'' +
+                ", qqUId='" + qqUId + '\'' +
+                ", qqAccessToken='" + qqAccessToken + '\'' +
+                ", origin=" + origin +
+                ", staffId=" + staffId +
+                ", userCode='" + userCode + '\'' +
+                ", referee='" + referee + '\'' +
+                ", level_update_time=" + level_update_time +
+                ", level='" + level + '\'' +
+                ", bindtime=" + bindtime +
+                ", loginkey='" + loginkey + '\'' +
+                ", userkey='" + userkey + '\'' +
+                ", cashChl='" + cashChl + '\'' +
+                '}';
     }
 }

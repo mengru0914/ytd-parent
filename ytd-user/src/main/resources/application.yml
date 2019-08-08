@@ -8,6 +8,8 @@ spring:
     url: jdbc:mysql://10.1.67.7:3306/p2p?characterEncoding=UTF8
     username: root
     password: root
+    hikari:
+      connection-timeout: 1000000
   jpa:
     database: MySQL
     show-sql: true

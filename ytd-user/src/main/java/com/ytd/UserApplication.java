@@ -1,5 +1,6 @@
 package com.ytd;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
+@MapperScan("com.ytd.pojo")
 public class UserApplication {
     /*
     *   mobile=18605210107

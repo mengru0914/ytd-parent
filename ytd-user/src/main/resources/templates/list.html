@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../static/js/jquery-1.8.2.min.js"></script>
-    <script src="../static/js/md5.js"></script>
-    <link rel="stylesheet" href="../static/css/index_like.css">
+    <script src="../static/css/js/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" href="../static/css/css/index_like.css">
 </head>
 
 <script type="text/javascript">
-    $(function () {
-    })
+
 </script>
 <body>
 <script color="0,0,0" opacity="0.5" count="99" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"
@@ -23,11 +21,29 @@
             <td colspan="10"><a href="#">安全保障</a></td>
             <td colspan="10"><a href="#">信息披露</a></td>
             <td colspan="10"><a href="#">网贷课堂</a></td>
-            <td colspan="10"><a href="http://127.0.0.1:9002/goUserMain/toMyAccount?userid=${userid}">我的账户</a></td>
+            <td colspan="10"><a href="/goUserMain/toMyAccount?userid=${oneUser.userId}">我的账户(true)</a></td>
+            <td colspan="10"><a href="http://127.0.0.1:9002/goUserMain/toMyAccount?userid=${oneUser.userId}">我的账户(flase)</a></td>
         </tr>
         <tr>
             <td colspan="10">
-                用户ID:<p th:text="${userid}"></p>
+                用户ID:<p th:text="${oneUser.userId}"></p>
+                用户email:<p th:text="${oneUser.email}"></p>
+                用户nickName:<p th:text="${oneUser.nickName}"></p>
+                用户realName:<p th:text="${oneUser.realName}"></p>
+                用户idCardNo:<p th:text="${oneUser.idCardNo}"></p>
+                用户passwd:<p th:text="${oneUser.passwd}"></p>
+                用户payPassword:<p th:text="${oneUser.payPassword}"></p>
+                用户isPwdSet:<p th:text="${oneUser.isPwdSet}"></p>
+                用户mobile:<p th:text="${oneUser.mobile}"></p>
+                用户jxmobile:<p th:text="${oneUser.jxmobile}"></p>
+                用户city:<p th:text="${oneUser.city}"></p>
+               <!-- 用户ID:<p th:text="${oneUser.registerTime}"></p>
+                用户ID:<p th:text="${oneUser.roles}"></p>
+                用户ID:<p th:text="${oneUser.cash=}"></p>
+                用户ID:<p th:text="${oneUser.currBal}"></p>
+                用户ID:<p th:text="${oneUser.frozenWithDrawCash}"></p>-->
+                 <!--frozenBiddingCash=0.0, idVerifyLimit=1, portrait=null, status=0, forbidStatus=0, albumCapacity=0, securityLevel=0, weiboUId='null', weiboAccessToken='null', qqUId='null', qqAccessToken='null', origin=null, staffId=null, userCode='null', referee='', level_update_time=null, level='null', bindtime=null, loginkey='null', userkey='null', cashChl='null'}-->
+
             </td>
         </tr>
     </table>

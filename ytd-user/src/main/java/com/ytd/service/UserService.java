@@ -1,12 +1,20 @@
 package com.ytd.service;
 
+/**
+ * 这里是注册功能模块UserService
+ * 开发人员：刘梦汝
+ */
+
 import com.ytd.dao.UserDao;
 import com.ytd.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-
+/**
+ * 这里是注册功能模块UserService
+ * 开发人员：刘梦汝
+ */
 @Service
 public class UserService {
 
@@ -14,6 +22,7 @@ public class UserService {
     private UserDao userDao;
 
     public void save(User user) {
+        //存储一些基本数据进入个人信息
         user.setRegisterTime(new Date());
         user.setPayPassword("000000");
         user.setNickName(user.getMobile());
@@ -29,6 +38,7 @@ public class UserService {
         if(user.getReferee()==null || "".equals(user.getReferee())){
             user.setReferee("");
         }
+        //注册信息入user_main
         userDao.save(user);
     }
 
