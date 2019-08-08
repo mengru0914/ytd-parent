@@ -1,97 +1,67 @@
 package com.ytd.pojo;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Table(name="user_main")
 public class UserMain implements Serializable {
 
-    public Integer userid;
 
-    public String email;
+    @Id
+    public Integer userId;//用户id
 
-    public String nickname;
+    public String email;//邮件，要求唯一
+    public String nickName;//用户昵称，要求唯一
+    public String realName;//真实姓名
+    public String idCardNo;//身份证号
+    public String passwd;//密码
+    public String payPassword;//支付密码
+    public Integer isPwdSet;//是否设置交易密码
+    public String mobile;//已绑定的手机号码，不要求唯一
+    public String jxmobile;//江西银行预留的手机号
+    public String city;//所在城市,改为商户的企业证件号
+    public Date registerTime;//注册时间
+    public Integer roles;//角色，参见com.zkbc.core.consts.user.UserRolesType
+    public Double cash;//可用现金余额  这条记录中的值才是用户真正可用的钱
+    public Double currBal;//账面余额
+    public Double frozenWithDrawCash;//已冻结的提现中现金
+    public Double frozenBiddingCash;//已冻结的投标中现金
+    public Integer  idVerifyLimit;//国政通验证次数，每次验证减1，默认每人最多验证3次
+    public Integer  portrait;//头像id
+    public Integer  status;//用户状态。用数值型的好处是今后可以扩充定义，参见com.zkbc.core.consts.user.UserStatusType
+    public Integer  forbidStatus;//禁止状态。参见com.zkbc.core.consts.user.UserForbidStatusType
+    public Integer  albumCapacity;//个人相册容量，单位：MB。用户所有的userpic加起来不能大于此数值
+    public Integer  securityLevel;//安全等级
+    public String weiboUId;//新浪微博uid
+    public String weiboAccessToken;//新浪微博AccessToken
+    public String qqUId;//腾讯uid
+    public String qqAccessToken;//腾讯AccessToken
+    public Integer origin;//借款用户的渠道
+    public Integer  staffId;//所属客户经理,改为是否为员工,1为是员工
+    public String userCode;//第三方支付账号
+    public String referee;//推荐人，存储推荐人用户名
+    public Date level_update_time;//级别更新时间
+    public String level;//0 普通用户  1 普通猪粉  2 超级猪粉
+    public Date bindtime;//
+    public String loginkey;//天眼登录校验标识
+    public String userkey;//天眼绑定标识
+    public String cashChl;//取现方式ID
 
-    public String realname;
 
-    public String idcardno;
 
-    public String passwd;
-
-    public String paypassword;
-
-    public Integer ispwdset;
-
-    public String mobile;
-
-    public String jxmobile;
-
-    public String city;
-
-    public Date registertime;
-
-    public Short roles;
-
-    public BigDecimal cash;
-
-    public BigDecimal currbal;
-
-    public BigDecimal frozenwithdrawcash;
-
-    public BigDecimal frozenbiddingcash;
-
-    public Short idverifylimit;
-
-    public Integer portrait;
-
-    public Short status;
-
-    public Short forbidstatus;
-
-    public Short albumcapacity;
-
-    public Short securitylevel;
-
-    public String weibouid;
-
-    public String weiboaccesstoken;
-
-    public String qquid;
-
-    public String qqaccesstoken;
-
-    public Short origin;
-
-    public Integer staffid;
-
-    public String usercode;
-
-    public String referee;
-
-    public Date levelUpdateTime;
-
-    public String level;
-
-    public Date bindtime;
-
-    public String loginkey;
-
-    public String userkey;
-
-    public String cashchl;
 
     @Id
     @Column(name="userid")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -99,31 +69,31 @@ public class UserMain implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
-    public String getIdcardno() {
-        return idcardno;
+    public String getIdCardNo() {
+        return idCardNo;
     }
 
-    public void setIdcardno(String idcardno) {
-        this.idcardno = idcardno == null ? null : idcardno.trim();
+    public void setIdCardNo(String idCardNo) {
+        this.idCardNo = idCardNo;
     }
 
     public String getPasswd() {
@@ -131,23 +101,23 @@ public class UserMain implements Serializable {
     }
 
     public void setPasswd(String passwd) {
-        this.passwd = passwd == null ? null : passwd.trim();
+        this.passwd = passwd;
     }
 
-    public String getPaypassword() {
-        return paypassword;
+    public String getPayPassword() {
+        return payPassword;
     }
 
-    public void setPaypassword(String paypassword) {
-        this.paypassword = paypassword == null ? null : paypassword.trim();
+    public void setPayPassword(String payPassword) {
+        this.payPassword = payPassword;
     }
 
-    public Integer getIspwdset() {
-        return ispwdset;
+    public Integer getIsPwdSet() {
+        return isPwdSet;
     }
 
-    public void setIspwdset(Integer ispwdset) {
-        this.ispwdset = ispwdset;
+    public void setIsPwdSet(Integer isPwdSet) {
+        this.isPwdSet = isPwdSet;
     }
 
     public String getMobile() {
@@ -155,7 +125,7 @@ public class UserMain implements Serializable {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public String getJxmobile() {
@@ -163,7 +133,7 @@ public class UserMain implements Serializable {
     }
 
     public void setJxmobile(String jxmobile) {
-        this.jxmobile = jxmobile == null ? null : jxmobile.trim();
+        this.jxmobile = jxmobile;
     }
 
     public String getCity() {
@@ -171,63 +141,63 @@ public class UserMain implements Serializable {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
-    public Date getRegistertime() {
-        return registertime;
+    public Date getRegisterTime() {
+        return registerTime;
     }
 
-    public void setRegistertime(Date registertime) {
-        this.registertime = registertime;
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
     }
 
-    public Short getRoles() {
+    public Integer getRoles() {
         return roles;
     }
 
-    public void setRoles(Short roles) {
+    public void setRoles(Integer roles) {
         this.roles = roles;
     }
 
-    public BigDecimal getCash() {
+    public Double getCash() {
         return cash;
     }
 
-    public void setCash(BigDecimal cash) {
+    public void setCash(Double cash) {
         this.cash = cash;
     }
 
-    public BigDecimal getCurrbal() {
-        return currbal;
+    public Double getCurrBal() {
+        return currBal;
     }
 
-    public void setCurrbal(BigDecimal currbal) {
-        this.currbal = currbal;
+    public void setCurrBal(Double currBal) {
+        this.currBal = currBal;
     }
 
-    public BigDecimal getFrozenwithdrawcash() {
-        return frozenwithdrawcash;
+    public Double getFrozenWithDrawCash() {
+        return frozenWithDrawCash;
     }
 
-    public void setFrozenwithdrawcash(BigDecimal frozenwithdrawcash) {
-        this.frozenwithdrawcash = frozenwithdrawcash;
+    public void setFrozenWithDrawCash(Double frozenWithDrawCash) {
+        this.frozenWithDrawCash = frozenWithDrawCash;
     }
 
-    public BigDecimal getFrozenbiddingcash() {
-        return frozenbiddingcash;
+    public Double getFrozenBiddingCash() {
+        return frozenBiddingCash;
     }
 
-    public void setFrozenbiddingcash(BigDecimal frozenbiddingcash) {
-        this.frozenbiddingcash = frozenbiddingcash;
+    public void setFrozenBiddingCash(Double frozenBiddingCash) {
+        this.frozenBiddingCash = frozenBiddingCash;
     }
 
-    public Short getIdverifylimit() {
-        return idverifylimit;
+    public Integer getIdVerifyLimit() {
+        return idVerifyLimit;
     }
 
-    public void setIdverifylimit(Short idverifylimit) {
-        this.idverifylimit = idverifylimit;
+    public void setIdVerifyLimit(Integer idVerifyLimit) {
+        this.idVerifyLimit = idVerifyLimit;
     }
 
     public Integer getPortrait() {
@@ -238,92 +208,92 @@ public class UserMain implements Serializable {
         this.portrait = portrait;
     }
 
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Short getForbidstatus() {
-        return forbidstatus;
+    public Integer getForbidStatus() {
+        return forbidStatus;
     }
 
-    public void setForbidstatus(Short forbidstatus) {
-        this.forbidstatus = forbidstatus;
+    public void setForbidStatus(Integer forbidStatus) {
+        this.forbidStatus = forbidStatus;
     }
 
-    public Short getAlbumcapacity() {
-        return albumcapacity;
+    public Integer getAlbumCapacity() {
+        return albumCapacity;
     }
 
-    public void setAlbumcapacity(Short albumcapacity) {
-        this.albumcapacity = albumcapacity;
+    public void setAlbumCapacity(Integer albumCapacity) {
+        this.albumCapacity = albumCapacity;
     }
 
-    public Short getSecuritylevel() {
-        return securitylevel;
+    public Integer getSecurityLevel() {
+        return securityLevel;
     }
 
-    public void setSecuritylevel(Short securitylevel) {
-        this.securitylevel = securitylevel;
+    public void setSecurityLevel(Integer securityLevel) {
+        this.securityLevel = securityLevel;
     }
 
-    public String getWeibouid() {
-        return weibouid;
+    public String getWeiboUId() {
+        return weiboUId;
     }
 
-    public void setWeibouid(String weibouid) {
-        this.weibouid = weibouid == null ? null : weibouid.trim();
+    public void setWeiboUId(String weiboUId) {
+        this.weiboUId = weiboUId;
     }
 
-    public String getWeiboaccesstoken() {
-        return weiboaccesstoken;
+    public String getWeiboAccessToken() {
+        return weiboAccessToken;
     }
 
-    public void setWeiboaccesstoken(String weiboaccesstoken) {
-        this.weiboaccesstoken = weiboaccesstoken == null ? null : weiboaccesstoken.trim();
+    public void setWeiboAccessToken(String weiboAccessToken) {
+        this.weiboAccessToken = weiboAccessToken;
     }
 
-    public String getQquid() {
-        return qquid;
+    public String getQqUId() {
+        return qqUId;
     }
 
-    public void setQquid(String qquid) {
-        this.qquid = qquid == null ? null : qquid.trim();
+    public void setQqUId(String qqUId) {
+        this.qqUId = qqUId;
     }
 
-    public String getQqaccesstoken() {
-        return qqaccesstoken;
+    public String getQqAccessToken() {
+        return qqAccessToken;
     }
 
-    public void setQqaccesstoken(String qqaccesstoken) {
-        this.qqaccesstoken = qqaccesstoken == null ? null : qqaccesstoken.trim();
+    public void setQqAccessToken(String qqAccessToken) {
+        this.qqAccessToken = qqAccessToken;
     }
 
-    public Short getOrigin() {
+    public Integer getOrigin() {
         return origin;
     }
 
-    public void setOrigin(Short origin) {
+    public void setOrigin(Integer origin) {
         this.origin = origin;
     }
 
-    public Integer getStaffid() {
-        return staffid;
+    public Integer getStaffId() {
+        return staffId;
     }
 
-    public void setStaffid(Integer staffid) {
-        this.staffid = staffid;
+    public void setStaffId(Integer staffId) {
+        this.staffId = staffId;
     }
 
-    public String getUsercode() {
-        return usercode;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUsercode(String usercode) {
-        this.usercode = usercode == null ? null : usercode.trim();
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public String getReferee() {
@@ -331,15 +301,15 @@ public class UserMain implements Serializable {
     }
 
     public void setReferee(String referee) {
-        this.referee = referee == null ? null : referee.trim();
+        this.referee = referee;
     }
 
-    public Date getLevelUpdateTime() {
-        return levelUpdateTime;
+    public Date getLevel_update_time() {
+        return level_update_time;
     }
 
-    public void setLevelUpdateTime(Date levelUpdateTime) {
-        this.levelUpdateTime = levelUpdateTime;
+    public void setLevel_update_time(Date level_update_time) {
+        this.level_update_time = level_update_time;
     }
 
     public String getLevel() {
@@ -347,7 +317,7 @@ public class UserMain implements Serializable {
     }
 
     public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
+        this.level = level;
     }
 
     public Date getBindtime() {
@@ -363,7 +333,7 @@ public class UserMain implements Serializable {
     }
 
     public void setLoginkey(String loginkey) {
-        this.loginkey = loginkey == null ? null : loginkey.trim();
+        this.loginkey = loginkey;
     }
 
     public String getUserkey() {
@@ -371,14 +341,14 @@ public class UserMain implements Serializable {
     }
 
     public void setUserkey(String userkey) {
-        this.userkey = userkey == null ? null : userkey.trim();
+        this.userkey = userkey;
     }
 
-    public String getCashchl() {
-        return cashchl;
+    public String getCashChl() {
+        return cashChl;
     }
 
-    public void setCashchl(String cashchl) {
-        this.cashchl = cashchl == null ? null : cashchl.trim();
+    public void setCashChl(String cashChl) {
+        this.cashChl = cashChl;
     }
 }

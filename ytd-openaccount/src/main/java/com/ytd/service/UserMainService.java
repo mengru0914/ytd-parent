@@ -12,7 +12,8 @@ public class UserMainService {
     @Autowired
     private UserMainDao usermaindao;
 
-    public UserMain findByUserid(Integer userid) {
-       return usermaindao.findByUserid(userid);
+    public UserMain findByUserid(Integer userId) {
+       //return usermaindao.findById(userid);
+       return usermaindao.findByUserid(userId);
     }
 }

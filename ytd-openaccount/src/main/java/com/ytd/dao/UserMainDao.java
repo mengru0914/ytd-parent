@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 @Mapper
 public interface UserMainDao extends JpaRepository<UserMain,Integer> ,JpaSpecificationExecutor<UserMain>{
 
-    @Select("Select * from user_main WHERE userid = #{userid}")
-    UserMain findByUserid(Integer userid);
+    @Select("Select * from user_main WHERE userId = #{userId}")
+    UserMain findByUserid(Integer userId);
 }

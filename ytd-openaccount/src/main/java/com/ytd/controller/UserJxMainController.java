@@ -5,11 +5,13 @@ import com.ytd.service.UserJxMainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
 @RequestMapping("/goUserJxMain")
+@CrossOrigin
 public class UserJxMainController {
     @Autowired
     private UserJxMainService userjxmainservice;
