@@ -5,18 +5,22 @@
     <title>我的账户</title>
     <script src="../static/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript">
-        // $(function () {
-        //     $("#checkcode").click(function () {
-        //         var  = $("[name=]").val();
-        //         $.post(
-        //             "",
-        //             {},
-        //             function (obj) {
-        //             },
-        //             "json"
-        //         )
-        //     })
-        // })
+
+         $(function () {
+             var userId =window.localion.search.split("&userId=")[1];
+            $.post(
+                "/goUserMain/toMyAccount",
+                {userId,userId},
+                function (obj) {
+                  if(obj){
+                      alert("注册电子账户")
+                  }
+                },
+                "json"
+
+            )
+
+        })
 
     </script>
 </head>
@@ -27,9 +31,9 @@
     <h1 style="font-size: 88px">我是我的账户页面</h1>
     <!--我要做的第一件事情是判断用户有没有开通虚拟电子账户，没有提示其去开通-->
     <!---->
-    <p th:text="'hello'+${useronemain.realname}"> assssssssss</p>
+    <!--<p th:text="'hello'+${useronemain.realname}"> assssssssss</p>
 
-    <p th:text="${useronemain.realname}"></p>
+    <p th:text="${useronemain.realname}"></p>-->
 <!--   <th:c:forEach items="${useronemain }" var="" varStatus="status" begin="0" step="1">
         <tr class="gradeX">
             我的userid<td class="">${useronemain.userid}</td>
@@ -38,11 +42,11 @@
         <table style="border: 2px;border-color: red">
             <tr>
                 <td>我的userid</td>
-                <td><input type="text" name="userid" placeholder="我是userid" >${useronemain.userid}</td>
+                <td><input type="text" name="userid" placeholder="我是userid" th:value="${userId}"></td>
             </tr>
             <tr>
                 <td>我的真实姓名</td>
-                <td><input type="text" name="realName" placeholder="我是真实姓名" value="${1}"></td>
+                <td><input type="text"  placeholder="我是真实姓名" ></td>
             </tr>
             <tr>
                 <td>我的用户电子账户</td>

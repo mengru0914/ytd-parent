@@ -4,16 +4,10 @@ import com.ytd.dao.UserMainDao;
 import com.ytd.pojo.UserMain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
-@Service
-public class UserMainService {
-    @Autowired
-    private UserMainDao usermaindao;
-
-    public UserMain findByUserid(Integer userId) {
-       //return usermaindao.findById(userid);
-       return usermaindao.findByUserid(userId);
-    }
+public interface UserMainService {
+    UserMain findByUserid(Integer userId);
 }

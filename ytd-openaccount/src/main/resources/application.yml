@@ -5,18 +5,24 @@ spring:
     name: ytd_openaccount #指定服务名
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://10.1.67.7:3306/p2p?characterEncoding=UTF8
+    url: jdbc:mysql://10.1.67.7:3306/p2p?characterEncoding=UTF8&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
-    password: 1234
-
-
+    password: root
   jpa:
     database: MySQL
     show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
   mvc:
     static-path-pattern: static/**
   thymeleaf:
     cache: false
+#mybatis:
+    # 通用mapper已经提供了驼峰转换的设置，所以可以不用再设置
+ #     configuration:
+  #      map-underscore-to-camel-case: true
 
 eureka:
   client:
@@ -24,7 +30,6 @@ eureka:
       defaultZone: http://localhost:6868/eureka
   instance:
     prefer-ip-address: true
-
 
 
 #pagehelper分页插件

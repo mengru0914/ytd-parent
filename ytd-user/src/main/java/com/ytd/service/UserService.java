@@ -8,6 +8,7 @@ package com.ytd.service;
 import com.ytd.dao.UserDao;
 import com.ytd.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -20,9 +21,12 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public void save(User user) {
         //存储一些基本数据进入个人信息
+        user.setPasswd(encoder.encode(user.getPasswd()));//密码加密
         user.setRegisterTime(new Date());
         user.setPayPassword("000000");
         user.setNickName(user.getMobile());

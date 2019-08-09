@@ -47,7 +47,7 @@ public class User implements Serializable {
     public Integer  staffId;//所属客户经理,改为是否为员工,1为是员工
     public String userCode;//第三方支付账号
     public String referee;//推荐人，存储推荐人用户名
-    public Date levelUpdateTime;//级别更新时间
+    public Date level_update_time;//级别更新时间
     public String level;//0 普通用户  1 普通猪粉  2 超级猪粉
     public Date bindtime;//
     public String loginkey;//天眼登录校验标识
@@ -308,12 +308,12 @@ public class User implements Serializable {
         this.referee = referee;
     }
 
-    public Date levelUpdateTime() {
-        return levelUpdateTime;
+    public Date getLevel_update_time() {
+        return level_update_time;
     }
 
-    public void levelUpdateTime(Date levelUpdateTime) {
-        this.levelUpdateTime = levelUpdateTime;
+    public void setLevel_update_time(Date level_update_time) {
+        this.level_update_time = level_update_time;
     }
 
     public String getLevel() {
@@ -390,7 +390,7 @@ public class User implements Serializable {
                 ", staffId=" + staffId +
                 ", userCode='" + userCode + '\'' +
                 ", referee='" + referee + '\'' +
-                ", level_update_time=" + levelUpdateTime +
+                ", level_update_time=" + level_update_time +
                 ", level='" + level + '\'' +
                 ", bindtime=" + bindtime +
                 ", loginkey='" + loginkey + '\'' +

@@ -3,6 +3,7 @@ package com.ytd.client;
 import com.ytd.pojo.User;
 import com.ytd.pojo.UserMain;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;

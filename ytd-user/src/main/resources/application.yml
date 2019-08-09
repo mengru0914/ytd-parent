@@ -11,8 +11,11 @@ spring:
     hikari:
       connection-timeout: 1000000
   jpa:
-    database: MySQL
-    show-sql: true
+      database: MySQL
+      show-sql: true
+      hibernate:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   mvc:
     static-path-pattern: static/**
   thymeleaf:

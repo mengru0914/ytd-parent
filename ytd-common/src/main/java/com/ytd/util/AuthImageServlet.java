@@ -116,7 +116,7 @@ public class AuthImageServlet {
   
         //生成随机数,并将随机数字转换为字母   
         String sRand="";   
-        for (int i=0;i<6;i++)   
+        for (int i=0;i<4;i++)
         {   
             int itmp = random.nextInt(26) + 65;   
             char ctmp = (char)itmp;   

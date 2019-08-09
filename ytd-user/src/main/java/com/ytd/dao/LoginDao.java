@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 @Mapper
 public interface LoginDao extends JpaRepository<User,Integer> ,JpaSpecificationExecutor<User>{
 
+
     /**
      * 根据手机号查询用户
      * @param
