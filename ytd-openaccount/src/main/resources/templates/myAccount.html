@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>我的账户</title>
-    <script src="../static/js/jquery-1.8.2.min.js"></script>
+    <script src="../static/css/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript">
-
          $(function () {
-             var userId =window.localion.search.split("&userId=")[1];
+             var userId=$("#userid").val();
             $.post(
-                "/goUserMain/toMyAccount",
+                "toMyAccount",
                 {userId,userId},
                 function (obj) {
-                  if(obj){
-                      alert("注册电子账户")
+                    alert(obj);
+                  if(obj=="1"){
+                      alert("填写注册电子账户")
+                      location.href="toOpenCount";
+                  }else if(obj=="0"){
+                      location.reload();
+                  }else{
+                      location.href="http://localhost:9002/goUser/toregister"
                   }
                 },
                 "json"
@@ -41,52 +46,51 @@
     </th:c:forEach>-->
         <table style="border: 2px;border-color: red">
             <tr>
-                <td>我的userid</td>
-                <td><input type="text" name="userid" placeholder="我是userid" th:value="${userId}"></td>
+                <td><input type="hidden" name="userid" id="userid" th:value="${userId}"></td>
             </tr>
             <tr>
-                <td>我的真实姓名</td>
-                <td><input type="text"  placeholder="我是真实姓名" ></td>
+                <td>真实姓名</td>
+                <td><input type="text"  placeholder="真实姓名" ></td>
             </tr>
             <tr>
-                <td>我的用户电子账户</td>
-                <td><input type="text" name="userAccountId" placeholder="我是用户电子账户" value=""></td>
+                <td>用户电子账户</td>
+                <td><input type="text" name="userAccountId" placeholder="用户电子账户" value=""></td>
             </tr>
             <tr>
-                <td>我的身份证</td>
-                <td><input type="text" name="idCardNo" placeholder="我是身份证"></td>
+                <td>身份证</td>
+                <td><input type="text" name="idCardNo" placeholder="身份证"></td>
             </tr>
             <tr>
-                <td>我的已绑定的手机号码，不要求唯一</td>
-                <td><input type="text" name="mobile" placeholder="我是已绑定的手机号码，不要求唯一"></td>
+                <td>已绑定的手机号码，不要求唯一</td>
+                <td><input type="text" name="mobile" placeholder="已绑定的手机号码，不要求唯一"></td>
             </tr>
             <tr>
-                <td>我的江西银行预留的手机号</td>
-                <td><input type="text" name="jxmobile" placeholder="我是江西银行预留的手机号"></td>
+                <td>银行预留的手机号</td>
+                <td><input type="text" name="jxmobile" placeholder="江西银行预留的手机号"></td>
             </tr>
             <tr>
-                <td>我是电子账户</td>
-                <td><input type="text" name="ye2" placeholder="我是电子账户"></td>
+                <td>电子账户</td>
+                <td><input type="text" name="ye2" placeholder="电子账户"></td>
             </tr>
             <tr>
-                <td>我的可用现金余额</td>
-                <td><input type="text" name="cash" placeholder="我的可用现金余额"></td>
+                <td>可用现金余额</td>
+                <td><input type="text" name="cash" placeholder="可用现金余额"></td>
             </tr>
             <tr>
                 <td>账面余额</td>
                 <td><input type="text" name="currBal" placeholder="账面余额"></td>
             </tr>
             <tr>
-                <td>我的已冻结的提现中现金</td>
-                <td><input type="text" name="frozenWithDrawCash" placeholder="我是已冻结的提现中现金"></td>
+                <td>已冻结的提现中现金</td>
+                <td><input type="text" name="frozenWithDrawCash" placeholder="已冻结的提现中现金"></td>
             </tr>
             <tr>
-                <td>我的已冻结的投标中现金</td>
-                <td><input type="text" name="frozenBiddingCash" placeholder="我是已冻结的投标中现金"></td>
+                <td>已冻结的投标中现金</td>
+                <td><input type="text" name="frozenBiddingCash" placeholder="已冻结的投标中现金"></td>
             </tr>
             <tr>
-                <td>我的已冻结的提现中现金</td>
-                <td><input type="text" name="frozenWithDrawCash" placeholder="我是已冻结的提现中现金"></td>
+                <td>已冻结的提现中现金</td>
+                <td><input type="text" name="frozenWithDrawCash" placeholder="已冻结的提现中现金"></td>
             </tr>
         </table>
     </body>
