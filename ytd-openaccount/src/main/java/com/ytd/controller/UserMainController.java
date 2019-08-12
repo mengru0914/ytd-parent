@@ -42,42 +42,33 @@ public class UserMainController {
 
     /**
      * 跳转到我的账户页面
+     *
      * @param userId
      * @param request
      * @return
      */
     @RequestMapping("/MyAccount")
-    public String toOpenCount ( String userId,HttpServletRequest request){
+    public String toOpenCount(String userId, HttpServletRequest request) {
 
-        request.setAttribute("userId",userId);
+        request.setAttribute("userId", userId);
 
         return "myAccount";
     }
 
-    /**
-     * 开户信息页面
-     * @param userId
-     * @param request
-     * @return
-     */
-    @RequestMapping("/toOpenCount")
-    public String toOpenCountS ( String userId,HttpServletRequest request){
 
-        request.setAttribute("userId",userId);
-
-        return "openCount";
-    }
     /**
      * 注册页面
+     *
      * @return
      */
     @RequestMapping("/toregister")
-    public String toregister(){
+    public String toregister() {
         return "register";
     }
 
     /**
      * 信息校验是否注册，是否开户
+     *
      * @param userId
      * @param request
      * @param session
@@ -85,22 +76,21 @@ public class UserMainController {
      */
     @RequestMapping("/toMyAccount")
     @ResponseBody
-    public int toOpenAccount (Integer userId, HttpServletRequest request, HttpSession session){
-        session.setAttribute("userId",userId);
+    public int toOpenAccount(Integer userId, HttpServletRequest request, HttpSession session) {
+        session.setAttribute("userId", userId);
         //验证用户是否注册
         UserMain userMain = userMainService.selectUserMainByUserId(userId);//通过登录用户的userId查询一组对象
 
-        request.setAttribute("useronemain",userMain);
+        request.setAttribute("useronemain", userMain);
         // 验证用户是否注册
         if (userMain == null) {
-            logger.error("用户="+userMain.getUserId()+"·银行开户 （合规），用户信息不存在，手机号="+userMain.getMobile()+"",userMain.getUserId(), userMain.getMobile());
-           // modelAndView.setViewName("register");
-           return 2;
+            logger.error("用户=" + userMain.getUserId() + "·银行开户 （合规），用户信息不存在，手机号=" + userMain.getMobile() + "", userMain.getUserId(), userMain.getMobile());
+            // modelAndView.setViewName("register");
+            return 2;
         }
-
         // 验证用户是否开过户
-        if (userMain.getUserCode()!=null) {
-            logger.error("用户="+userMain.getUserId()+"·银行开户 （合规），已开通银行存管账户", userMain.getUserId(), userMain.getUserCode());
+        if (userMain.getUserCode() != null) {
+            logger.error("用户=" + userMain.getUserId() + "·银行开户 （合规），已开通银行存管账户", userMain.getUserId(), userMain.getUserCode());
             return 0;//跳转到已经开过户的页面
         }
 
@@ -109,53 +99,56 @@ public class UserMainController {
 
     /**
      * 校验真实姓名、手机号、银行卡
+     *
      * @param request
      * @param session
      */
     @RequestMapping("/toOpenAccount")
-    public String checkOpenAccount ( HttpServletRequest request, HttpSession session,String realName,String idCardNo,String mobile){
+    @ResponseBody
+    public String checkOpenAccount(HttpServletRequest request, HttpSession session, String realName, String idCardNo, String mobile) {
 
         int userId = (int) session.getAttribute("userId");
         //验证用户是否注册
         UserMain userMain = userMainService.selectUserMainByUserId(userId);//通过登录用户的userId查询一组对象
 
-        Map<String,String> jxMap = new HashMap<>();
+        Map< String, String > jxMap = new HashMap<>();
         jxMap.put("userId", userMain.getUserId().toString());
         jxMap.put("realName", realName);
         jxMap.put("idNo", idCardNo);
         jxMap.put("mobile", mobile);
-        Map<String,Object> resultMap = userMainService.proOpenAccount(jxMap);
-        if(resultMap.get("error")==null){
+        Map<String, Object> resultMap = userMainService.proOpenAccount(jxMap);
+        if (resultMap.get("error") != null) {
 
-            return ""
+            session.setAttribute("no", resultMap.get("error"));
+            return (String) resultMap.get("error");
         }
 
-        return "/openCount";
+        return "success";
 
 
     }
-
     /**
      * 开通银行存管账户
-     *
+     * @param request
+     * @param session
+     * @return
      */
     @RequestMapping("/getOpenAccount")
-    public String getOpenAccount(HttpServletRequest request,HttpSession session) {
-        Map<String,String> jxMap = new HashMap<String,String>();
+    public String getOpenAccount(HttpServletRequest request, HttpSession session) {
+        Map< String, String > jxMap = new HashMap< String, String >();
 
         jxMap.put("userId", (String) session.getAttribute("userId"));
         jxMap.put("realName", request.getParameter("realName"));
         jxMap.put("idNo", request.getParameter("idNo"));
         jxMap.put("mobile", request.getParameter("mobile"));
 
-        Map<String,Object> resultMap = jxOperationService.getOpenAccount(jxMap);
+        Map< String, Object > resultMap = jxOperationService.getOpenAccount(jxMap);
         request.setAttribute("resultMap", resultMap);
-        if(resultMap.get("retMsg") != null) {
+        if (resultMap.get("retMsg") != null) {
             return "/error";
         }
         return "/checkOpenAccount";
     }
-
 
 
 }

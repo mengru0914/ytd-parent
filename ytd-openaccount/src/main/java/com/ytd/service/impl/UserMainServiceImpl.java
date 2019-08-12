@@ -56,7 +56,7 @@ public class UserMainServiceImpl implements UserMainService {
         // 验证用户是否注册
         UserMain userMain = userMainService.selectUserMainByUserId(Integer.valueOf(jxMap.get("userId")));
         if (userMain == null) {
-            logger.error("用户=[{}]·江西银行开户 （合规），用户信息不存在，手机号=[{}]",jxMap.get("userId"), jxMap.get("mobile"));
+            logger.error("用户·江西银行开户 （合规），用户信息不存在",jxMap.get("userId"), jxMap.get("mobile"));
 
             resultMap.put("error","未注册");
             return resultMap;
@@ -64,7 +64,7 @@ public class UserMainServiceImpl implements UserMainService {
 
         // 验证用户是否开过户
         if (!StringUtils.isBlank(userMain.getUserCode())) {
-            logger.error("用户=[{}]·江西银行开户 （合规），已开通银行存管账户=[{}]", jxMap.get("userId"), userMain.getUserCode());
+            logger.error("用户·江西银行开户 （合规），已开通银行存管账户", jxMap.get("userId"), userMain.getUserCode());
             resultMap.put("error","已开户");
             return resultMap;
         }
@@ -72,7 +72,7 @@ public class UserMainServiceImpl implements UserMainService {
         //验证开户手机号是否申领过电子账户
         List<UserMain> userMainList_Mobile = userMainDao.selectUserMainByJxMobile(jxMap.get("mobile"));
         if(!userMainList_Mobile.isEmpty()) {
-            logger.error("用户=[{}]·江西银行开户 （合规），当前手机号=[{}]已申领过电子账号。",jxMap.get("userId"),jxMap.get("mobile"));
+            logger.error("用户·江西银行开户 （合规），当前手机号已申领过电子账号。",jxMap.get("userId"),jxMap.get("mobile"));
             resultMap.put("error","手机号已开过户");
             return resultMap;
         }
@@ -80,7 +80,7 @@ public class UserMainServiceImpl implements UserMainService {
         //验证身份证信息是否申领过电子账户
         List<UserMain> userMainList_IdNo = userMainDao.selectUserMainByIdCardNo(jxMap.get("idNo"));
         if(!userMainList_IdNo.isEmpty()) {
-            logger.error("用户=[{}]·江西银行开户 （合规），当前身份证号=[{}]已申领过电子账号。",jxMap.get("userId"),jxMap.get("idNo"));
+            logger.error("用户·江西银行开户 （合规），当前身份证号已申领过电子账号。",jxMap.get("userId"),jxMap.get("idNo"));
             resultMap.put("error","身份证已开过户");
             return resultMap;
         }
@@ -90,7 +90,7 @@ public class UserMainServiceImpl implements UserMainService {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(jxMap.get("idNo"));
         if(!matcher.matches()) {
-            logger.error("用户=[{}]·江西银行开户 （合规），当前身份证号=[{}] 正则验证未通过。",jxMap.get("userId"),jxMap.get("idNo"));
+            logger.error("用户=·江西银行开户 （合规），当前身份证号= 正则验证未通过。",jxMap.get("userId"),jxMap.get("idNo"));
             resultMap.put("error","身份证不合格");
             return resultMap;
         }

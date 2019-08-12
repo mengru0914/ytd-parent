@@ -75,12 +75,17 @@ public class jXOperationServiceImpl implements JxOperationService {
         return reqMap;
     }
 
+    /**
+     * 开户
+     * @param jxMap
+     * @return
+     */
     @Override
     public Map<String, Object> getOpenAccount(Map<String, String> jxMap) {
         Map<String, Object> proOpenAccount = userMainService.proOpenAccount(jxMap);
 
         if(!proOpenAccount.get("retCode").toString().equals("0")) {
-            logger.error("用户=[{}]·开户，二次校验失败=[{}]", jxMap.get("userId"), JSON.toJSONString(proOpenAccount));
+            logger.error("用户开户，二次校验失败", jxMap.get("userId"), JSON.toJSONString(proOpenAccount));
             return proOpenAccount;
         }
 
@@ -107,9 +112,10 @@ public class jXOperationServiceImpl implements JxOperationService {
         reqMap.put("notifyUrl", "goUserMain/getOpenAccount" + "OpenAccount");// 后台通知链接
         reqMap.put("acqRes", acqRes);
 
+        //创建签名
         String sign = creatSign(reqMap);
         reqMap.put("sign", sign);// 签名
-        logger.info("用户=[{}]，江西银行开户 （合规）·请求信息=[{}]",jxMap.get("userId"),JSON.toJSON(reqMap));
+        logger.info("用户，江西银行开户 （合规）·请求信息",jxMap.get("userId"),JSON.toJSON(reqMap));
 
         // 添加到trade记录表
         Trade insertTrade = new Trade();

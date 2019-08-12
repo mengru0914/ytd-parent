@@ -14,10 +14,22 @@
                     alert(obj);
                   if(obj=="1"){
                       alert("填写注册电子账户")
-                      location.href="toOpenCount";
-                  }else if(obj=="0"){
+
+                      $.post(
+                          "/toOpenCount",
+                          {userId:userId},
+                          function (data) {
+                              if(data.eq("success")){
+                                  location.href="/getOpenAccount";
+                              }else{
+                                  alert(data);
+                              }
+                          },
+                          "json"
+                      )
+                  }else if(obj=="0"){//已经开过户
                       location.reload();
-                  }else{
+                  }else{//去注册
                       location.href="http://localhost:9002/goUser/toregister"
                   }
                 },

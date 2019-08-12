@@ -7,7 +7,6 @@ import java.util.TreeMap;
 
 import com.ytd.jxsign.RSAHelper;
 import com.ytd.jxsign.RSAKeyUtil;
-import pppig.api.common.consts.CommonDef;
 
 
 
@@ -22,9 +21,9 @@ public class SignUtil_lj {
 //	private static String  crt = CommonDef.JX_SECRET_KEY +"fdep2.crt"; 
 	
 	//***************************************UAT***********************************
-	private static String keys = CommonDef.JX_SECRET_KEY +"pangpangzhu_uat.p12";//私钥文件
+	private static String keys = "";//私钥文件
 	private static String pass = "pangpangzhu_uat@2016"; //私钥密码
-	private static String  crt = CommonDef.JX_SECRET_KEY+"fdep.crt";
+	private static String  crt = "";
 	
 	//***************************************生产***********************************
 //	public final static String keys = CommonDef.JX_SECRET_KEY + "pangpangzhu.p12";//私钥文件
