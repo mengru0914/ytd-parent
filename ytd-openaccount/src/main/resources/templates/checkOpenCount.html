@@ -23,16 +23,25 @@
 <h1>填写开户信息</h1>
 <form action="" method="post">
     <table>
-        <input type="hidden" th:value="${no}" id="no"/>
-
         <input type="hidden" name="version" th:value="${jxMap.version}">
+        <input type="hidden" name="txCode" th:value="${jxMap.txCode}">
+        <input type="hidden" name="instCode" th:value="${jxMap.instCode}">
+        <input type="hidden" name="bankCode" th:value="${jxMap.bankCode}">
+        <input type="hidden" name="txDate" th:value="${jxMap.txDate}">
+        <input type="hidden" name="txTime" th:value="${jxMap.txTime}">
+        <input type="hidden" name="seqNo" th:value="${jxMap.seqNo}">
+        <input type="hidden" name="channel" th:value="${jxMap.channel}">
+        <input type="hidden" name="accountId" th:value="${jxMap.accountId}">
+        <input type="hidden" name="idType" th:value="${jxMap.idType}">
+        <input type="hidden" name="idNo" th:value="${jxMap.idNo}">
+        <input type="hidden" name="name" th:value="${jxMap.name}">
+        <input type="hidden" name="mobile" th:value="${jxMap.mobile}">
+        <input type="hidden" name="cardNo" th:value="${jxMap.cardNo}">
+        <input type="hidden" name="retUrl" th:value="${jxMap.retUrl}">
+        <input type="hidden" name="notifyUrl" th:value="${jxMap.notifyUrl}">
+        <input type="hidden" name="userIP" th:value="${jxMap.userIP}">
+        <input type="hidden" name="acqRes" th:value="${jxMap.acqRes}">
 
-            <input type="text" name="idCardNo" >
-
-            <input type="text" name="mobile" >
-
-
-                <input type="submit" value="立即开通">
 
 
     </table>

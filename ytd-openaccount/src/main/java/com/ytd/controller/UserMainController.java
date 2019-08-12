@@ -112,6 +112,7 @@ public class UserMainController {
      * @param request
      * @param session
      */
+    @RequestMapping("/getOpenAccount")
     public String checkOpenAccount ( HttpServletRequest request, HttpSession session,String realName,String idCardNo,String mobile){
 
         int userId = (int) session.getAttribute("userId");
@@ -146,9 +147,9 @@ public class UserMainController {
         Map<String,Object> resultMap = jxOperationService.getOpenAccount(jxMap);
         request.setAttribute("resultMap", resultMap);
         if(resultMap.get("retMsg") != null) {
-            return "view/jxpay/error";
+            return "/error";
         }
-        return "view/jxpay/start-OpenAccount";
+        return "/checkOpenAccount";
     }
 
 

@@ -103,8 +103,8 @@ public class jXOperationServiceImpl implements JxOperationService {
         reqMap.put("smsFlag", "1");// 是否需要开通动账短信通知 0：不需要 1或空：需要
 
        // reqMap.put("coinstName", pppigCompanyName);// 商户名称
-        reqMap.put("retUrl", "127.0.0.1/9002" + "OpenAccount?orderId=" + serialNumber);// 前台跳转链接
-        reqMap.put("notifyUrl", asynUrl + "OpenAccount");// 后台通知链接
+        reqMap.put("retUrl", "127.0.0.1/9002/goUserMain/toMyAccount" + "OpenAccount?orderId=" + serialNumber);// 前台跳转链接
+        reqMap.put("notifyUrl", "goUserMain/getOpenAccount" + "OpenAccount");// 后台通知链接
         reqMap.put("acqRes", acqRes);
 
         String sign = creatSign(reqMap);
