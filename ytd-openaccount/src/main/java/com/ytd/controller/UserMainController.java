@@ -112,7 +112,7 @@ public class UserMainController {
      * @param request
      * @param session
      */
-    @RequestMapping("/getOpenAccount")
+    @RequestMapping("/toOpenAccount")
     public String checkOpenAccount ( HttpServletRequest request, HttpSession session,String realName,String idCardNo,String mobile){
 
         int userId = (int) session.getAttribute("userId");
@@ -125,6 +125,10 @@ public class UserMainController {
         jxMap.put("idNo", idCardNo);
         jxMap.put("mobile", mobile);
         Map<String,Object> resultMap = userMainService.proOpenAccount(jxMap);
+        if(resultMap.get("error")==null){
+
+            return ""
+        }
 
         return "/openCount";
 

@@ -10,17 +10,10 @@
     <script src="../../static/css/js/jquery-1.8.2.min.js"></script>
 </head>
 <script>
-    $(function () {
-        var no = $("#no").val();
-        if(no!="" && no!=null){
-            alert($("#no").val())
-        }
 
-    })
 </script>
 <body>
 
-<h1>填写开户信息</h1>
 <form action="" method="post">
     <table>
         <input type="hidden" name="version" th:value="${jxMap.version}">
