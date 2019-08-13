@@ -1,14 +1,18 @@
 package com.ytd.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
 @Table(name="trade")
 public class Trade implements Serializable{
 	private static final long serialVersionUID = -4631440693728596254L;
 
+	@Id
 	private String serialNumber;
 
     /**

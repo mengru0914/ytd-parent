@@ -9,4 +9,9 @@ public class Constant {
     public static final String acctUse="0";
     public static final String idType="01";
 
+    public static final String TradeStatusSu="success";
+    public static final String TradeStatusFa="fail";
+
+
+
 }

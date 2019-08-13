@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,11 +48,23 @@ public class UserMainController {
      * @return
      */
     @RequestMapping("/MyAccount")
-    public String toOpenCount(String userId, HttpServletRequest request) {
+    public String toOpenCount(String userId, HttpServletRequest request ,HttpSession session) {
+
 
         request.setAttribute("userId", userId);
 
         return "myAccount";
+    }
+    /*
+    跳转到填写三码的页面
+     */
+    @RequestMapping("/toOpenCountHtml")
+    public String toOpenCountHtml( HttpServletRequest request,HttpSession session) {
+
+        Integer userId = (Integer) session.getAttribute("userId");
+        request.setAttribute("userId", userId);
+        //System.err.println(userId2+"-----"+userId);
+        return "openCount";
     }
 
 
@@ -99,56 +111,104 @@ public class UserMainController {
 
     /**
      * 校验真实姓名、手机号、银行卡
-     *
+     *开通银行存管账户
      * @param request
      * @param session
      */
     @RequestMapping("/toOpenAccount")
     @ResponseBody
-    public String checkOpenAccount(HttpServletRequest request, HttpSession session, String realName, String idCardNo, String mobile) {
-
-        int userId = (int) session.getAttribute("userId");
+    public int checkOpenAccount(HttpServletRequest request, HttpSession session, String realName, String idCardNo, String mobile) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        System.out.println("toOpenAccount:userId="+userId);
         //验证用户是否注册
         UserMain userMain = userMainService.selectUserMainByUserId(userId);//通过登录用户的userId查询一组对象
-
         Map< String, String > jxMap = new HashMap<>();
+
         jxMap.put("userId", userMain.getUserId().toString());
         jxMap.put("realName", realName);
         jxMap.put("idNo", idCardNo);
         jxMap.put("mobile", mobile);
+
+
         Map<String, Object> resultMap = userMainService.proOpenAccount(jxMap);
+
         if (resultMap.get("error") != null) {
 
             session.setAttribute("no", resultMap.get("error"));
-            return (String) resultMap.get("error");
+            return 0;
         }
 
-        return "success";
+        session.setAttribute("resultMap",resultMap);
+
+        return 1;
 
 
     }
-    /**
-     * 开通银行存管账户
+    @RequestMapping("/checkOpenAccount")
+    public String checkOpenAccount(HttpSession session,HttpServletRequest request){
+
+        Map<String,Object> m = (Map<String, Object>) session.getAttribute("resultMap");
+        request.setAttribute("resultMap",m);
+
+        return "checkOpenCount";
+    }
+   /* *//**
+     *
      * @param request
      * @param session
      * @return
-     */
+     *//*
     @RequestMapping("/getOpenAccount")
-    public String getOpenAccount(HttpServletRequest request, HttpSession session) {
+    public String getOpenAccount(String idCardNo,String name,String mobile,HttpServletRequest request, HttpSession session) {
+
         Map< String, String > jxMap = new HashMap< String, String >();
 
-        jxMap.put("userId", (String) session.getAttribute("userId"));
-        jxMap.put("realName", request.getParameter("realName"));
-        jxMap.put("idNo", request.getParameter("idNo"));
-        jxMap.put("mobile", request.getParameter("mobile"));
+       // jxMap.put("userId", (String) session.getAttribute("userId"));
+        *//*jxMap.put("realName", (String) session.getAttribute("realName"));
+        jxMap.put("idNo", (String) session.getAttribute("idNo"));
+        jxMap.put("mobile", (String) session.getAttribute("mobile"));*//*
+        String userId = (String) session.getAttribute("userId");
 
+        jxMap.put("userId",userId);
+        jxMap.put("idNo", idCardNo);
+        jxMap.put("realName", name);
+        jxMap.put("mobile", mobile);
         Map< String, Object > resultMap = jxOperationService.getOpenAccount(jxMap);
         request.setAttribute("resultMap", resultMap);
         if (resultMap.get("retMsg") != null) {
             return "/error";
         }
         return "/checkOpenAccount";
+    }*/
+
+
+
+    /**
+     * 江西银行开户加密·后台回调
+     */
+    @RequestMapping("/getResponseOpenAccount")
+    public void  getResponseOpenAccount(HttpServletRequest request,HttpServletResponse response)throws IOException {
+        Map<String, String> respMap = AsynResponseMapHandle(request);
+        userMainService.getAsynFinishOpenAccount(respMap);
+        response.getWriter().write("success");
+        response.getWriter().flush();
+        response.getWriter().close();
     }
 
+    /**
+     * 后台回调参数处理
+     */
+    private Map<String, String> AsynResponseMapHandle(HttpServletRequest request){
+        Map< String, String[] > temp = request.getParameterMap();
+        Iterator<String> iter = temp.keySet().iterator();
+        String temps = null;
+        while (iter.hasNext()) {
+            String key = iter.next();
+            String value = temp.get(key)[0];
+            temps = value;
+        }
+        Map< String, String > respMap = JSON.parseObject(temps,Map.class);
+        return respMap;
+    }
 
 }

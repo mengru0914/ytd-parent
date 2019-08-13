@@ -7,14 +7,16 @@
     <script color="0,0,0" opacity="0.5" count="99"
             src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"
             type="text/javascript" charset="utf-8"></script>
-    <script src="../../static/css/js/jquery-1.8.2.min.js"></script>
+    <script src="/static/css/js/jquery-1.8.2.min.js"></script>
 </head>
 <script>
-
+  $(function () {
+      $("form").submit();
+  })
 </script>
 <body>
-
-<form action="" method="post">
+<!--http://10.1.67.35:8070/escrow/p2p/page/accountOpen-->
+<form action="http://10.1.67.10:8080/escrow/p2p/page/accountOpen" method="post">
     <table>
         <input type="hidden" name="version" th:value="${resultMap.reqMap.version}">
         <input type="hidden" name="txCode" th:value="${resultMap.reqMap.txCode}">
@@ -24,7 +26,7 @@
         <input type="hidden" name="txTime" th:value="${resultMap.reqMap.txTime}">
         <input type="hidden" name="seqNo" th:value="${resultMap.reqMap.seqNo}">
         <input type="hidden" name="channel" th:value="${resultMap.reqMap.channel}">
-        <input type="hidden" name="accountId" th:value="${resultMap.reqMap.accountId}">
+        <!--<input type="hidden" name="accountId" th:value="${resultMap.reqMap.accountId}">-->
         <input type="hidden" name="idType" th:value="${resultMap.reqMap.idType}">
         <input type="hidden" name="idNo" th:value="${resultMap.reqMap.idNo}">
         <input type="hidden" name="name" th:value="${resultMap.reqMap.name}">
@@ -32,8 +34,8 @@
         <input type="hidden" name="cardNo" th:value="${resultMap.reqMap.cardNo}">
         <input type="hidden" name="retUrl" th:value="${resultMap.reqMap.retUrl}">
         <input type="hidden" name="notifyUrl" th:value="${resultMap.reqMap.notifyUrl}">
-        <input type="hidden" name="userIP" th:value="${resultMap.reqMap.reqMap.userIP}">
-        <input type="hidden" name="acqRes" th:value="${resultMap.reqMap.reqMap.acqRes}">
+        <input type="hidden" name="userIP" th:value="${resultMap.reqMap.userIP}">
+        <input type="hidden" name="acqRes" th:value="${resultMap.reqMap.acqRes}">
 
 
 

@@ -7,16 +7,31 @@
     <script color="0,0,0" opacity="0.5" count="99"
             src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.js"
             type="text/javascript" charset="utf-8"></script>
-    <script src="../../static/css/js/jquery-1.8.2.min.js"></script>
+
     <link rel="stylesheet" href="../static/css/css/index_like.css">
+    <script src="../static/css/js/jquery-1.8.2.min.js"></script>
 
 </head>
 <script>
     $(function () {
-        var no = $("#no").val();
-        if(no!="" && no!=null){
-            alert($("#no").val())
-        }
+           $("#btn").click(function () {
+               $.post(
+                   "toOpenAccount",
+                   $("form").serialize(),
+                   function (data) {
+                       alert(data)
+                       if(data){
+                           alert(123)
+                           location.href="/goUserMain/checkOpenAccount";
+                       }else{
+                           alert(data);
+                       }
+                   },
+                   "json"
+               )
+           })
+
+
 
 
     })
@@ -24,9 +39,8 @@
 <body>
 
 <h1>填写开户信息</h1>
-<form action="/toOpenAccount" method="post">
+<form action="" method="post">
     <table>
-        <input type="hidden" th:value="${no}" id="no"/>
         <input type="hidden" th:value="${userId}" id="userId"/>
         <tr>
             <td>真实姓名</td>
@@ -42,7 +56,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="立即开通">
+                <input type="button" value="立即开通" id="btn">
             </td>
         </tr>
     </table>

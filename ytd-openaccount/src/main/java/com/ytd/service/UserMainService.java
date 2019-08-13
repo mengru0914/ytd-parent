@@ -17,5 +17,8 @@ public interface UserMainService {
 
     UserMain selectUserMainByUserId(Integer userId);
 
-
+    /**
+     * 江西银行开户加密·后台回调
+     */
+    void getAsynFinishOpenAccount(Map<String,String> respMap);
 }

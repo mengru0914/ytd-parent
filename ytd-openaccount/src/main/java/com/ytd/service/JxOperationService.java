@@ -8,5 +8,4 @@ public interface JxOperationService {
 
     Map<String,String> getRequestMap();
 
-    Map<String,Object> getOpenAccount(Map<String,String> jxMap);
 }

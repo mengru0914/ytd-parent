@@ -1,14 +1,16 @@
 package com.ytd.pojo;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="sys_sequence_jx")
-public class SysSwquenceJx {
+public class SysSwquenceJx implements Serializable {
+
     @Id
     private String uuid;
     private String txDate;

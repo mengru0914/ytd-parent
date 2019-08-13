@@ -29,8 +29,7 @@ public class jXOperationServiceImpl implements JxOperationService {
 
     @Autowired
     private UserMainService userMainService;
-    @Autowired
-    private TradeDao tradeDao;
+
 
     private static final Logger logger = LoggerFactory.getLogger(UserMainController.class);
 
@@ -46,14 +45,15 @@ public class jXOperationServiceImpl implements JxOperationService {
         String time = new RandomUtils().totime();//时间
         Long seqNo = RandomNumberUtil.randomLong(6);//流水号
 
+        //唯一流水号
         String uuid = UuidHelper.toPrettyString(UUID.nameUUIDFromBytes((date + time + seqNo).getBytes(Charset.forName("UTF-8"))));
         SysSwquenceJx sysSwquenceJx = sysSqueneceJxDao.selectByPrimaryKey(uuid);//查询唯一流水号
         if(sysSwquenceJx != null) {
-            logger.error("生成江西流水号·流水号=[{}]已存在",seqNo);
+            logger.error("生成江西流水号·流水号已存在",seqNo);
             date = new RandomUtils().todate();//日期
             time = new RandomUtils().totime();//时间
             seqNo = RandomNumberUtil.randomLong(6);;//流水号
-            logger.info("生成江西流水号·重新生成流水号=[{}]",seqNo);
+            logger.info("生成江西流水号·重新生成流水号",seqNo);
         }
         sysSwquenceJx = new SysSwquenceJx();
         sysSwquenceJx.setUuid(uuid);
@@ -75,65 +75,6 @@ public class jXOperationServiceImpl implements JxOperationService {
         return reqMap;
     }
 
-    /**
-     * 开户
-     * @param jxMap
-     * @return
-     */
-    @Override
-    public Map<String, Object> getOpenAccount(Map<String, String> jxMap) {
-        Map<String, Object> proOpenAccount = userMainService.proOpenAccount(jxMap);
-
-        if(!proOpenAccount.get("retCode").toString().equals("0")) {
-            logger.error("用户开户，二次校验失败", jxMap.get("userId"), JSON.toJSONString(proOpenAccount));
-            return proOpenAccount;
-        }
-
-        // 用户信息
-        UserMain userMain = userMainService.selectUserMainByUserId(Integer.valueOf(jxMap.get("userId")));
-
-        // 创建返回信息
-        String acqRes = "realName=" + jxMap.get("realName");// 真实姓名
-        acqRes += ",mobile=" + jxMap.get("mobile"); // 手机号
-        acqRes += ",idNo=" + jxMap.get("idNo"); // 证件号码
-        acqRes += ",userId=" + jxMap.get("userId"); // 用户标识
-
-        Map<String, String> reqMap = getRequestMap();
-        String serialNumber = null;
-        reqMap.put("txCode", "accountOpenEncryptPage");// 交易代码
-        reqMap.put("idType", "01");// 证件类型
-        reqMap.put("name", jxMap.get("realName"));// 姓名
-        reqMap.put("gender", IdCardUtil.getGenderByIdCard(jxMap.get("idNo")));// 性别
-        reqMap.put("mobile", jxMap.get("mobile"));// 手机号
-        reqMap.put("smsFlag", "1");// 是否需要开通动账短信通知 0：不需要 1或空：需要
-
-       // reqMap.put("coinstName", pppigCompanyName);// 商户名称
-        reqMap.put("retUrl", "127.0.0.1/9002/goUserMain/toMyAccount" + "OpenAccount?orderId=" + serialNumber);// 前台跳转链接
-        reqMap.put("notifyUrl", "goUserMain/getOpenAccount" + "OpenAccount");// 后台通知链接
-        reqMap.put("acqRes", acqRes);
-
-        //创建签名
-        String sign = creatSign(reqMap);
-        reqMap.put("sign", sign);// 签名
-        logger.info("用户，江西银行开户 （合规）·请求信息",jxMap.get("userId"),JSON.toJSON(reqMap));
-
-        // 添加到trade记录表
-        Trade insertTrade = new Trade();
-        insertTrade.setMessageId(reqMap.get("txCode"));
-        insertTrade.setUserId(userMain.getUserId());// 发送请求的id
-        insertTrade.setSerialNumber(serialNumber);
-        insertTrade.setRequestMessage(reqMap.get("sign"));
-        insertTrade.setTradeStatus("WAITING");
-        insertTrade.setTradeDate(new Date());
-        insertTrade.setQd(jxMap.get("channel"));
-        tradeDao.save(insertTrade);
-
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("openAccountUrl", "");
-        resultMap.put("serialNumber", serialNumber);
-        resultMap.put("reqMap", reqMap);
-        return resultMap;
-    }
 
 
     /**
